@@ -4,13 +4,13 @@ motif_dir='/tscc/nfs/home/nzemke/renlab2/multiome/mop_m1_integration/human_atac/
 
 counter=0
 for x in ${motif_dir}* ; do 
-    if [ $counter -lt 100 ]; then
+    if [ $counter -ge 1 ] && [ $counter -lt 792 ]; then
   motif=$(echo $x | sed "s=${motif_dir}==g");
 echo $motif
-   ((counter++))
-    else
+   elif [ $counter -ge 792 ]; then
         break
     fi
+    ((counter++))
 
 fimo --o fimo_motif_out/${motif} ${motif_dir}${motif} union_peaks.fa
 
